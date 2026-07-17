@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - CricStats</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <h2 style="margin-top: 40px; border-bottom: 4px solid var(--primary-ink); padding-bottom: 10px;">ADMIN LOGIN</h2>
+        
+        <div class="bento-card full-width" style="margin-top: 30px;">
+            <label style="font-weight:bold; margin-bottom:5px; display:block;">SELECT PROFILE</label>
+            <select id="adminUser">
+                <option value="Admin1">Admin 1</option>
+                <option value="Admin2">Admin 2</option>
+            </select>
+
+            <label style="font-weight:bold; margin-bottom:5px; display:block;">SECURE ACCESS KEY</label>
+            <input type="password" id="adminPassword" placeholder="••••••••">
+
+            <button style="margin-top: 10px;" onclick="executeAdminLogin()">AUTHORIZE ACCESS</button>
+        </div>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricStats</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Top Navigation / Admin Gateway Redirect Trigger -->
+        <div class="top-nav">
+            <div class="logo-btn" onclick="window.location.href='/login'">
+                <span class="logo-dot"></span>
+                <span class="logo-text">CS-BySoham</span>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:50px;">
+            <h1 style="font-size: 3.2rem; letter-spacing: -2px; font-weight: 900; text-transform: uppercase;">Cric<span style="color:var(--accent-red);">Stats</span></h1>
+        </div>
+
+        <div class="bento-card full-width" style="margin-top: 50px;">
+            <h3 style="margin-bottom:15px; letter-spacing: 0.5px;">ENTER MATCH CODE</h3>
+            <input type="text" id="matchCodeInput" placeholder="EX: A7B89X" style="text-transform: uppercase;">
+            <button onclick="viewMatchSpectator()">VIEW LIVE SCORECARD</button>
+        </div>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+</body>
+</html>

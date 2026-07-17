@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CricStats</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: var(--border-line); padding-bottom:10px;">
+            <h2>DASHBOARD</h2>
+            <a href="/logout" style="color:var(--accent-red); font-weight:bold; text-decoration:none; font-size:0.9rem;">LOGOUT</a>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card full-width" onclick="window.location.href='/player'" style="cursor:pointer; background:#C92A2A; color:white;">
+                <h3>+ CREATE PLAYER PROFILE</h3>
+                <span style="font-size:1.5rem; text-align:right;">→</span>
+            </div>
+            
+            <div class="bento-card" onclick="window.location.href='/team'" style="cursor:pointer;">
+                <h3>TEAMS</h3>
+                <p style="font-size:0.8rem; color:var(--muted-gray);">Manage Groups</p>
+                <span style="font-size:1.5rem; text-align:right;">→</span>
+            </div>
+
+            <div class="bento-card" onclick="window.location.href='/match'" style="cursor:pointer;">
+                <h3>NEW MATCH</h3>
+                <p style="font-size:0.8rem; color:var(--muted-gray);">Setup Engine</p>
+                <span style="font-size:1.5rem; text-align:right;">→</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

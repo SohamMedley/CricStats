@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Scoring - CricStats</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>CODE: <strong id="displayCode">{{match_code}}</strong> <button style="padding:4px 8px; font-size:0.7rem; box-shadow:none;" onclick="navigator.clipboard.writeText('{{match_code}}')">COPY</button></div>
+            <button onclick="window.location.href='/detailed-score/{{match_code}}'" style="padding:5px; font-size:0.7rem; background:none; color:black; box-shadow:none; border:1px solid black;">DETAILED</button>
+        </div>
+
+        <div class="score-header-box" style="margin-top:15px;">
+            <h2 id="liveBattingTeam">-</h2>
+            <h1 style="font-size:3.5rem; margin:10px 0;" id="liveScoreDisplay">0/0</h1>
+            <p>Overs: <span id="liveOversDisplay">0.0</span> / <span id="maxOversDisplay">0</span></p>
+        </div>
+
+        <div class="bento-card full-width" style="padding:10px; font-size:0.9rem;">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; border-bottom:1px solid black; padding-bottom:4px;">
+                <span>Batsman</span><span>R(B)</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;" id="rowStriker"><span>* -</span><span id="sRuns">0(0)</span></div>
+            <div style="display:flex; justify-content:space-between;" id="rowNonStriker"><span>-</span><span id="nsRuns">0(0)</span></div>
+        </div>
+
+        <div class="bento-card full-width" style="padding:10px; font-size:0.9rem; margin-top:10px;">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; border-bottom:1px solid black; padding-bottom:4px;">
+                <span>Bowler</span><span>O-M-R-W</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;" id="rowBowler"><span>-</span><span id="bStats">0-0-0-0</span></div>
+        </div>
+
+        <div id="mathCalculationsBlock" style="margin-top:10px; font-size:0.85rem; text-align:center; font-weight:bold; color:var(--muted-gray);">
+            CRR: <span id="crrVal">0.0</span> | RRR: <span id="rrrVal">N/A</span>
+        </div>
+
+        <!-- Conditional Administration Controls Grid Layer Template Check -->
+        {% if admin_view %}
+        <div id="adminControlPad" style="margin-top:auto;">
+            <div class="action-pad-grid">
+                <button class="btn-run" onclick="submitBallRecord('run', 1)">1</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 2)">2</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 3)">3</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 4)">4</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 5)">5</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 6)">6</button>
+                <button class="btn-run" onclick="submitBallRecord('run', 0)">0</button>
+                <button class="btn-extra" onclick="triggerExtraPlusPopup()">EXT+</button>
+                
+                <button class="btn-wicket" onclick="triggerWicketDismissal('Bowled')">BOWLED</button>
+                <button class="btn-wicket" onclick="triggerWicketDismissal('Catch Out')">CATCH OUT</button>
+                <button class="btn-wicket" onclick="triggerWicketDismissal('Stumped')">STUMPED</button>
+                <button class="btn-wicket" onclick="triggerRunOutModal()">RUN OUT</button>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Modal Overlays UI Setup Inside Score Engine Lifecycle -->
+        <div id="extraPlusModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>EXTRAS CONTEXT MODIFIER</h3>
+                <select id="extType"><option value="WD">Wide (WD)</option><option value="NB">No Ball (NB)</option><option value="B">Byes (B)</option><option value="LB">Leg Byes (LB)</option></select>
+                <label>Additional Runs Appended:</label>
+                <input type="number" id="extRuns" value="0" min="0">
+                <button onclick="commitExtraPlusAdjustment()">APPLY EXTRA</button>
+            </div>
+        </div>
+
+        <div id="runOutModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>RUN OUT DISMISSAL ENGINE</h3>
+                <label>Select Active Fielder Involved:</label>
+                <select id="roFielder"></select>
+                <button onclick="commitRunOutDismissal()">CONFIRM DISMISSAL</button>
+            </div>
+        </div>
+
+        <div id="newBatsmanModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>SELECT NEW BATSMAN</h3>
+                <select id="nextBatsmanSelect"></select>
+                <button onclick="commitNewBatsman()">BRING TO CREASE</button>
+            </div>
+        </div>
+
+        <div id="newBowlerModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>SELECT NEXT BOWLER</h3>
+                <select id="nextBowlerSelect"></select>
+                <button onclick="commitNewBowler()">ASSIGN OVER</button>
+            </div>
+        </div>
+
+        <div id="inningsSummaryModal" class="modal-overlay">
+            <div class="modal-content" style="text-align:center;">
+                <h3>INNINGS COMPLETE</h3>
+                <h2 id="innSumScore">0/0</h2>
+                <div id="innSumTopPerformers" style="margin:15px 0; text-align:left; font-size:0.9rem;"></div>
+                <button id="innSumActionBtn" style="width:100%;"></button>
+            </div>
+        </div>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+    <script>
+        window.matchCode = "{{match_code}}";
+        window.isAdmin = {% if admin_view %}true{% else %}false{% endif %};
+        document.addEventListener("DOMContentLoaded", () => {
+            startLiveScoreSynchronizationLoop();
+        });
+    </script>
+</body>
+</html>

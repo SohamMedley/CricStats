@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Configuration Engine</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h2>MATCH SETUP</h2>
+            <button onclick="window.location.href='/home'" style="padding:6px 12px; font-size:0.8rem; box-shadow:none; background:none; color:black; border:1px solid black;">BACK</button>
+        </div>
+        
+        <div class="bento-card full-width" style="margin-top:15px; padding:12px;">
+            <label>Select Team Adversaries</label>
+            <select id="mTeamA" onchange="syncMatchPlayers()"></select>
+            <select id="mTeamB" onchange="syncMatchPlayers()"></select>
+            
+            <label>Overs Configuration Limit</label>
+            <select id="mOvers">
+                <option value="1">1 Over</option>
+                <option value="2">2 Overs</option>
+                <option value="4">4 Overs</option>
+                <option value="5">5 Overs</option>
+                <option value="6">6 Overs</option>
+                <option value="7">7 Overs</option>
+            </select>
+        </div>
+
+        <div class="bento-card full-width" style="padding:12px;">
+            <label>Toss Mechanics</label>
+            <select id="mTossWinner"><option value="A">Team A</option><option value="B">Team B</option></select>
+            <select id="mDecision"><option value="Bat">Batting</option><option value="Bowl">Bowling</option></select>
+        </div>
+
+        <div class="bento-card full-width" style="padding:12px;">
+            <label>Lineup Operational Setup</label>
+            <select id="mStriker" placeholder="Opening Striker"></select>
+            <select id="mNonStriker" placeholder="Non Striker"></select>
+            <select id="mBowler" placeholder="Opening Bowler"></select>
+            <select id="mKeeper" placeholder="Wicketkeeper"></select>
+        </div>
+
+        <button style="margin-top:15px; background:var(--accent-red);" onclick="launchMatchEngine()">START MATCH</button>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", initMatchSetupFields);
+    </script>
+</body>
+</html>

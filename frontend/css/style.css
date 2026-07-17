@@ -1,0 +1,169 @@
+:root {
+    --bg-color: #F7F4EF;
+    --card-bg: #FFFFFF;
+    --primary-ink: #1A1A1A;
+    --accent-red: #C92A2A;
+    --muted-gray: #7A7A7A;
+    --border-line: 1.5px solid #1A1A1A;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--primary-ink);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* Strict Mobile Frame Overrides */
+.mobile-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: var(--bg-color);
+    color: var(--primary-ink);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Navigation Layout Box */
+.top-nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Minimalist Logo Admin Trigger Button */
+.logo-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg);
+    border: var(--border-line);
+    padding: 6px 14px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px var(--primary-ink);
+    transition: transform 0.1s ease;
+}
+
+.logo-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--primary-ink);
+}
+
+.logo-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-red);
+    border: 1px solid var(--primary-ink);
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Minimal Bento Grid Structure */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.bento-card {
+    background: var(--card-bg);
+    border: var(--border-line);
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 4px 4px 0px var(--primary-ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.1s ease;
+}
+
+.bento-card.full-width {
+    grid-column: span 2;
+}
+
+/* Input Fields and Buttons */
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: var(--border-line);
+    background: var(--card-bg);
+    color: var(--primary-ink);
+    font-size: 1rem;
+    margin-bottom: 12px;
+    outline: none;
+}
+
+button {
+    background: var(--primary-ink);
+    color: var(--bg-color);
+    border: var(--border-line);
+    padding: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--accent-red);
+}
+
+/* Scorecard Interface Specifics */
+.score-header-box {
+    border: var(--border-line);
+    background: var(--primary-ink);
+    color: var(--bg-color);
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.action-pad-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.btn-run { background: var(--card-bg); color: var(--primary-ink); box-shadow: 2px 2px 0 var(--primary-ink); }
+.btn-extra { background: var(--bg-color); color: var(--accent-red); box-shadow: 2px 2px 0 var(--accent-red); }
+.btn-wicket { background: var(--accent-red); color: white; grid-column: span 2; }
+
+/* Modal overlays minimal style */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: var(--bg-color);
+    border: var(--border-line);
+    padding: 25px;
+    width: 90%;
+    max-width: 400px;
+}

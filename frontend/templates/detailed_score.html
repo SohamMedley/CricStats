@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Scorecard</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <h2>FULL SCORECARD</h2>
+        <div id="matchWinnerBanner" style="margin:15px 0; padding:10px; background:var(--primary-ink); color:var(--bg-color); text-align:center; font-weight:bold; display:none;"></div>
+        <div id="detailedOutputArea" style="margin-top:15px; flex-grow:1; overflow-y:auto;"></div>
+        <button onclick="window.history.back()" style="margin-top:20px; background:none; color:black;">BACK TO LIVE VIEW</button>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderDetailedStatisticsView("{{match_code}}");
+        });
+    </script>
+</body>
+</html>

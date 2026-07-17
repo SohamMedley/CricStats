@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player System</title>
+    <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h2>PLAYER PROFILES</h2>
+            <button onclick="window.location.href='/home'" style="padding:6px 12px; font-size:0.8rem; box-shadow:none; background:none; color:black; border:1px solid black;">BACK</button>
+        </div>
+        
+        <div id="playerListContainer" style="margin-top:15px; flex-grow:1; overflow-y:auto; max-height:400px;">
+            <!-- Render dynamic target via script -->
+        </div>
+
+        <div id="actionContainer" style="margin-top:20px;"></div>
+
+        <div id="playerModal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>NEW PROFILE</h3>
+                <input type="text" id="pName" placeholder="Full Name">
+                <select id="pRole">
+                    <option value="Batsman">Batsman</option>
+                    <option value="Bowler">Bowler</option>
+                    <option value="All-rounder">All-rounder</option>
+                    <option value="Wicketkeeper">Wicketkeeper</option>
+                </select>
+                <select id="pHand">
+                    <option value="Right-handed">Right-handed</option>
+                    <option value="Left-handed">Left-handed</option>
+                </select>
+                <button onclick="savePlayerProfile()" style="width:100%;">SAVE PROFILE</button>
+                <button onclick="togglePlayerModal(false)" style="width:100%; background:none; color:var(--primary-ink); margin-top:8px; box-shadow:none;">CANCEL</button>
+            </div>
+        </div>
+    </div>
+    <script src="/frontend/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", loadPlayerRoster);
+    </script>
+</body>
+</html>
