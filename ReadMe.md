@@ -3,7 +3,7 @@
 ## Run Project
 
 ```bash
-cd "D:\Soham Media World\codingbysoham\Projects\CricStats"
+cd "DirectoryTo\CricStats"
 pip install -r backend/requirements.txt
 python -m backend.app
 ```
